@@ -4,7 +4,9 @@
 - Name: <b>Mehmet Emre Kılınç</b>
 - Student ID: <b>202111058</b>
 
-SENG272 - hw3 - ISO 15939 Measurement Process Simulator
+SENG272 - hw3 - ISO 15939 Measurement Process
+
+Requirements and Design Document: https://github.com/MhmtEmrKlnc/lab3-iso15939/blob/main/Seng272_RequirementsAndDesign_MehmetEmreKilinc.docx
 
 ## Compilation and Run Instructions
 --------------------------------
