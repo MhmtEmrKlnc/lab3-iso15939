@@ -44,6 +44,52 @@ public class AnalysePanel extends StepPanel {
 
         add(new JLabel("Step 5: Analyse Results", JLabel.CENTER), BorderLayout.NORTH);
         add(mainContent, BorderLayout.CENTER);
+
+        JButton exportButton = new JButton("Export Report");
+        exportButton.addActionListener(e -> exportToTxt());
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        buttonPanel.add(exportButton);
+        add(buttonPanel, BorderLayout.SOUTH);
+    }
+
+    private void exportToTxt() {
+        Scenario scenario = DataManager.getInstance().getSelectedScenario();
+        if (scenario == null) return;
+
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Save Report");
+        if (fileChooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
+            java.io.File file = fileChooser.getSelectedFile();
+            if (!file.getName().toLowerCase().endsWith(".txt")) {
+                file = new java.io.File(file.getAbsolutePath() + ".txt");
+            }
+
+            try (java.io.PrintWriter writer = new java.io.PrintWriter(file)) {
+                writer.println("ISO 15939 MEASUREMENT REPORT");
+                writer.println("============================");
+                writer.println("Profile: " + DataManager.getInstance().getProfile().getUsername());
+                writer.println("School: " + DataManager.getInstance().getProfile().getSchool());
+                writer.println("Session: " + DataManager.getInstance().getProfile().getSessionName());
+                writer.println("Scenario: " + scenario.getName());
+                writer.println();
+
+                for (model.QualityDimension d : scenario.getDimensions()) {
+                    writer.println("Dimension: " + d.getName() + " (Score: " + d.calculateWeightedAverage() + ")");
+                    for (model.Metric m : d.getMetrics()) {
+                        writer.println("  - " + m.getName() + ": " + m.getValue() + " " + m.getUnit() + " (Score: " + m.getScore() + ")");
+                    }
+                    writer.println();
+                }
+
+                writer.println("GAP ANALYSIS");
+                writer.println("------------");
+                writer.println(gapAnalysisArea.getText());
+                
+                JOptionPane.showMessageDialog(this, "Report saved successfully!");
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "Error saving report: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }
 
     @Override

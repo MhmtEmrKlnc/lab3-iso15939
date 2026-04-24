@@ -65,6 +65,8 @@ public class DataManager {
         List<Scenario> all = scenariosByMode.get(mode);
         if (all == null) return new ArrayList<>();
         
+        if (mode.equals("Custom (Bonus)")) return all; // Return all custom scenarios regardless of type
+
         List<Scenario> filtered = new ArrayList<>();
         for (Scenario s : all) {
             if (s.getName().contains("(" + qualityType.split(" ")[0] + ")")) {
@@ -136,6 +138,10 @@ public class DataManager {
 
         s.addDimension(flow);
         s.addDimension(efficiency);
+    }
+
+    public void addCustomScenario(Scenario scenario) {
+        scenariosByMode.get("Custom (Bonus)").add(scenario);
     }
 
     public Profile getProfile() { return profile; }

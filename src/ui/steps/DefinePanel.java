@@ -48,15 +48,10 @@ public class DefinePanel extends StepPanel {
 
         gbc.gridx = 0; gbc.gridy = 2; add(new JLabel("Mode Selection:"), gbc);
         modeCombo = new JComboBox<>(new String[]{"Custom (Bonus)", "Health", "Education"});
-        modeCombo.addActionListener(e -> {
-            updateScenarios();
-            if (modeCombo.getSelectedIndex() == 0) {
-                JOptionPane.showMessageDialog(this, "Custom mode is a bonus feature and not implemented in this version.", "Notice", JOptionPane.INFORMATION_MESSAGE);
-            }
-        });
         gbc.gridx = 1; add(modeCombo, gbc);
 
-        gbc.gridx = 0; gbc.gridy = 3; add(new JLabel("Scenario selection:"), gbc);
+        gbc.gridx = 0; gbc.gridy = 3; gbc.gridwidth = 2;
+        
         scenarioCombo = new JComboBox<>();
         scenarioCombo.setRenderer(new DefaultListCellRenderer() {
             @Override
@@ -66,9 +61,33 @@ public class DefinePanel extends StepPanel {
                 return this;
             }
         });
-        gbc.gridx = 1; add(scenarioCombo, gbc);
 
+        JButton addCustomBtn = new JButton("Add New Scenario (Custom)");
+        addCustomBtn.setVisible(false);
+        addCustomBtn.addActionListener(e -> {
+            ui.components.CustomScenarioDialog dialog = new ui.components.CustomScenarioDialog((Frame) SwingUtilities.getWindowAncestor(this));
+            dialog.setVisible(true);
+            if (dialog.isSaved()) {
+                updateScenarios();
+            }
+        });
+        add(addCustomBtn, gbc);
+        
+        modeCombo.addActionListener(e -> {
+            updateScenarios();
+            addCustomBtn.setVisible("Custom (Bonus)".equals(modeCombo.getSelectedItem()));
+            revalidate();
+            repaint();
+        });
+        
+        // deafult -> education
+        modeCombo.setSelectedItem("Education");
         updateScenarios();
+        addCustomBtn.setVisible(false);
+        
+        gbc.gridwidth = 1;
+        gbc.gridx = 0; gbc.gridy = 4; add(new JLabel("Scenario selection:"), gbc);
+        gbc.gridx = 1; add(scenarioCombo, gbc);
     }
 
     private void updateScenarios() {
