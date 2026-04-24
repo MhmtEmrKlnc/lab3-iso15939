@@ -42,6 +42,9 @@ Step 2: Define Quality Dimensions (Product Quality)
 Step 2: Define Quality Dimensions (Process Quality)
 <img width="989" height="693" alt="3" src="https://github.com/user-attachments/assets/03bb02b2-8c1e-4d85-8f99-6498c9ec337b" />
 
+Step 2: Define Quality Dimensions (Create Custom Scenario)
+<img width="1147" height="743" alt="custom1" src="https://github.com/user-attachments/assets/0abeee37-743c-4080-a834-c10a2dfe7d69" />
+
 Step 3: Plan Measurement
 <img width="988" height="688" alt="4" src="https://github.com/user-attachments/assets/8588a43d-3459-4660-8cf0-72ab853813e8" />
 
@@ -52,6 +55,9 @@ Step 4: Validation Error
 <img width="989" height="695" alt="6" src="https://github.com/user-attachments/assets/1b1b43ff-80b7-4a7e-bd7e-fc5374dd212e" />
 
 Step 5: Analyse Results
-<img width="987" height="692" alt="7" src="https://github.com/user-attachments/assets/5c9da6dc-cb82-4db4-828a-1fb38a8d1f37" />
+<img width="1234" height="869" alt="step5" src="https://github.com/user-attachments/assets/1655be42-7991-4265-93df-1cab8db42138" />
+
+Result Report.txt Example
+<img width="834" height="770" alt="report1" src="https://github.com/user-attachments/assets/14a53c0e-de51-4861-9b2f-0e68afb14302" />
 
 
